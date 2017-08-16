@@ -1,14 +1,10 @@
 require 'json'
 load 'person.rb'
 
-file = File.read('data.json')
-data = JSON.parse(file)
+data = JSON.parse(File.read('data.json'))
 people = []
 
-data.each do |record|
-	person = Person.new(record)
-	people << person
-end
+data.each{ |record| people << Person.new(record) }
 
 File.open('log.txt', 'w') do |f|
 	people.each do |p|
